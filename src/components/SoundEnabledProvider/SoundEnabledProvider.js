@@ -1,7 +1,7 @@
 'use client';
-import { createContext, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 
-export const SoundEnabledContext = createContext(false);
+const SoundEnabledContext = createContext(false);
 
 const SoundEnabledProvider = ({ children }) => {
   const [soundEnabled, setSoundEnabled] = useState(true);
@@ -17,6 +17,17 @@ const SoundEnabledProvider = ({ children }) => {
       {children}
     </SoundEnabledContext.Provider>
   );
+};
+
+export const useSoundEnabled = () => {
+  const ctxVal = useContext(SoundEnabledContext);
+  if (!SoundEnabledContext) {
+    throw new Error('Cannot get SoundEnabled context');
+  }
+  if (!ctxVal) {
+    throw new Error('Cannot get SoundEnabled context value');
+  }
+  return ctxVal;
 };
 
 export default SoundEnabledProvider;

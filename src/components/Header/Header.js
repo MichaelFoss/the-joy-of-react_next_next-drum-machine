@@ -5,10 +5,10 @@ import { Volume2, VolumeX } from 'react-feather';
 import VisuallyHidden from '../VisuallyHidden';
 import MaxWidthWrapper from '../MaxWidthWrapper';
 import styles from './Header.module.css';
-import { SoundEnabledContext } from '../SoundEnabledProvider/SoundEnabledProvider';
+import { useSoundEnabled } from '../SoundEnabledProvider/SoundEnabledProvider';
 
 function Header() {
-  const { soundEnabled, toggleSoundEnabled } = useContext(SoundEnabledContext);
+  const { soundEnabled, toggleSoundEnabled } = useSoundEnabled();
 
   return (
     <header className={styles.wrapper}>
